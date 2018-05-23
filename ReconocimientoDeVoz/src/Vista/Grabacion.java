@@ -51,7 +51,7 @@ public class Grabacion extends javax.swing.JDialog {
         lbfAnimado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbfAnimado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(lbfAnimado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 330));
-        getContentPane().add(lbFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 330));
+        getContentPane().add(lbFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -99,9 +99,9 @@ public class Grabacion extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lbFondo;
-    private javax.swing.JLabel lbMicrof;
-    private javax.swing.JLabel lbTitulo;
+    public javax.swing.JLabel lbFondo;
+    public javax.swing.JLabel lbMicrof;
+    public javax.swing.JLabel lbTitulo;
     public javax.swing.JLabel lbfAnimado;
     // End of variables declaration//GEN-END:variables
 }
