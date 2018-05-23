@@ -19,7 +19,7 @@ public class Complementos {
     
 
     public static Icon nuevoIcono(String nombreImg){
-       ImageIcon i = new ImageIcon("src/pruebas/"+nombreImg);
+       ImageIcon i = new ImageIcon("src/Imagenes/"+nombreImg);
        Icon icon = new ImageIcon(i.getImage());
        return icon;
     }

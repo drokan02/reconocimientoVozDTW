@@ -13,15 +13,14 @@ import javax.swing.ImageIcon;
  *
  * @author DroKaN
  */
-public class Grabacion extends javax.swing.JDialog {
+public class Grabacion extends javax.swing.JFrame {
 
     /**
-     * Creates new form Grabacion
+     * Creates new form Grabacion1
      */
-    public Grabacion(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Grabacion() {
         initComponents();
-            ImageIcon img = new ImageIcon("src/pruebas/fondoD.jpg");
+             ImageIcon img = new ImageIcon("src/Imagenes/fondoD.jpg");
             Icon icon = new ImageIcon(img.getImage().getScaledInstance(lbFondo.getWidth(), lbFondo.getHeight(), Image.SCALE_DEFAULT));
             lbFondo.setIcon(icon);
     }
@@ -40,12 +39,11 @@ public class Grabacion extends javax.swing.JDialog {
         lbfAnimado = new javax.swing.JLabel();
         lbFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lbTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lbTitulo.setText("GRABANDO");
         getContentPane().add(lbTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 140, 50));
 
         lbMicrof.setFont(new java.awt.Font("Tahoma", 1, 80)); // NOI18N
@@ -53,7 +51,7 @@ public class Grabacion extends javax.swing.JDialog {
         lbMicrof.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbMicrof.setText("m");
         lbMicrof.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(lbMicrof, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 400, 340));
+        getContentPane().add(lbMicrof, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 340));
 
         lbfAnimado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbfAnimado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -89,18 +87,12 @@ public class Grabacion extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(Grabacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the dialog */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Grabacion dialog = new Grabacion(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new Grabacion().setVisible(true);
             }
         });
     }

@@ -36,7 +36,7 @@ public class Grabador{
     public  void grabarVoz(String nombre){
         String URL = "rec.wav";
         aFF_T = AudioFileFormat.Type.WAVE;
-        aF = new AudioFormat(8000.0F, 16, 2, true, false);
+        aF = new AudioFormat(8000.0F, 16, 1, true, false);
         if(!nombre.equals(""))
             URL = "src/grabaciones/"+nombre+".wav";
         audio=new File(URL);
@@ -93,8 +93,8 @@ public class Grabador{
         }else{
             res = nuevaMuestra(a,min,max);
             
-            return res;
-           // return filtrarMuesta(res, 0.97);
+            //return res;
+            return filtrarMuesta(res, 0.97);
         }
     }
      

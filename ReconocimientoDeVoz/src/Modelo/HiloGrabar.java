@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Controlador.Controller;
 import Vista.Grabacion;
 
 /**
@@ -12,11 +13,13 @@ import Vista.Grabacion;
  * @author DroKaN
  */
 public class HiloGrabar extends Thread{
-    private final Grabacion vgrabacion;
-    private final Palabra nuevaP;
-    private final Grabador grabador;
+    private  Grabacion vgrabacion;
+
+            
+    private  Palabra nuevaP;
+    private  Grabador grabador;
     
-    public HiloGrabar(Grabacion vgrabacion,Palabra nuevaP){
+    public HiloGrabar(Grabacion vgrabacion,Palabra nuevaP,Controller con){
         this.vgrabacion = vgrabacion;
         this.nuevaP = nuevaP;
         this.grabador = new Grabador();
@@ -26,8 +29,11 @@ public class HiloGrabar extends Thread{
             int cont = 0;
             int start = 3;
             int tiempG = 4;
+            vgrabacion.setLocationRelativeTo(null);
             vgrabacion.setVisible(true);
-            while(start>=0){
+            System.out.println(start);
+            while(start >= 0){
+                
                 vgrabacion.lbMicrof.setText(start+1+"");
                            
                 if (start == 0){
@@ -36,9 +42,10 @@ public class HiloGrabar extends Thread{
                     vgrabacion.lbTitulo.setText("GRABANDO");
                     vgrabacion.lbMicrof.setIcon(Complementos.nuevoIcono("microfono.png"));
                 } else {
-                    Complementos.dormirHilo(1000);
+                    
                 }
-                    start--;
+                start--;
+                Complementos.dormirHilo(1000);
             }
             
             while(tiempG > 0){
