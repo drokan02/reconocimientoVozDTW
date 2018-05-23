@@ -164,7 +164,7 @@ public class Controller implements ActionListener{
                 Complementos.dormirHilo(1000);
             }
             
-            while(tiempG > 0){
+            while(tiempG >= 0){
             
                 if(cont < 4){
                     g.lbMicrof.setText("");
@@ -174,7 +174,7 @@ public class Controller implements ActionListener{
                 }else {
                     cont = -1;
                 }
-                if(tiempG == 1){
+                if(tiempG == 0){
                    g.dispose();
                    grabador.finalizar();
                    nuevaPalabra.setAudio(grabador.getAudio());

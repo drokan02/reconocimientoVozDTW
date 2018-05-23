@@ -83,7 +83,7 @@ public class Diccionario {
         DTW dtw = new DTW();
         for(Palabra p: palabras){
             aux = dtw.matrizAcumulada(p.getMuestra(),palabra.getMuestra());
-            System.out.println(aux+"  "+ p.getPalabra());
+            System.out.println(aux+"  "+ p.getPalabra()+p.getMuestra().length+"  "+palabra.getMuestra().length);
             if(menor(men,aux) == aux){
                 men = aux;
                 res = p;
