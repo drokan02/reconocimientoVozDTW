@@ -28,18 +28,30 @@ public class Grabacion extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        lbTitulo = new javax.swing.JLabel();
+        lbMicrof = new javax.swing.JLabel();
+        lbfAnimado = new javax.swing.JLabel();
+        lbFondo = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lbTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lbTitulo.setText("GRABANDO");
+        getContentPane().add(lbTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 140, 50));
+
+        lbMicrof.setFont(new java.awt.Font("Tahoma", 1, 80)); // NOI18N
+        lbMicrof.setForeground(new java.awt.Color(255, 255, 255));
+        lbMicrof.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbMicrof.setText("m");
+        lbMicrof.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lbMicrof, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 400, 340));
+
+        lbfAnimado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbfAnimado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lbfAnimado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 330));
+        getContentPane().add(lbFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 330));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -87,5 +99,9 @@ public class Grabacion extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lbFondo;
+    private javax.swing.JLabel lbMicrof;
+    private javax.swing.JLabel lbTitulo;
+    public javax.swing.JLabel lbfAnimado;
     // End of variables declaration//GEN-END:variables
 }
