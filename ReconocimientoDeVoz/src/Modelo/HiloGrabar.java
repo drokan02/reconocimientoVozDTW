@@ -26,14 +26,14 @@ public class HiloGrabar extends Thread{
             int cont = 0;
             int start = 3;
             int tiempG = 4;
-            
+            vgrabacion.setVisible(true);
             while(start>=0){
-                System.out.print(start);
                 vgrabacion.lbMicrof.setText(start+1+"");
                            
                 if (start == 0){
                     grabador.grabarVoz(nuevaP.getPalabra());
                     vgrabacion.lbMicrof.setText("");
+                    vgrabacion.lbTitulo.setText("GRABANDO");
                     vgrabacion.lbMicrof.setIcon(Complementos.nuevoIcono("microfono.png"));
                 } else {
                     Complementos.dormirHilo(1000);

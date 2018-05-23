@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.*;
+import Vista.Grabacion;
 import Vista.MuestraDeVoz;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -24,16 +25,21 @@ import javax.swing.ImageIcon;
  */
 public class Controller implements ActionListener{
     private  MuestraDeVoz viewRec;
-    private  Grabador grabador;
-    private int pos;
+    private Grabacion vgrabacion;
     private  Diccionario diccionario;
     private DefaultListModel list;
+    private  Grabador grabador;
     private boolean estado;
     private Palabra muestra;
+    private int pos;
+    
+    
+    
     leerAudio leer;
     public Controller(){
         diccionario = new  Diccionario();
         viewRec = new MuestraDeVoz();
+        vgrabacion = new Grabacion(viewRec, true);
         grabador = new Grabador();
         list =  new DefaultListModel();
         leer = new leerAudio();

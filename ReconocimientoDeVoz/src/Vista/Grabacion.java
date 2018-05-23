@@ -5,6 +5,10 @@
  */
 package Vista;
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author DroKaN
@@ -17,6 +21,9 @@ public class Grabacion extends javax.swing.JDialog {
     public Grabacion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+            ImageIcon img = new ImageIcon("src/pruebas/fondoD.jpg");
+            Icon icon = new ImageIcon(img.getImage().getScaledInstance(lbFondo.getWidth(), lbFondo.getHeight(), Image.SCALE_DEFAULT));
+            lbFondo.setIcon(icon);
     }
 
     /**
