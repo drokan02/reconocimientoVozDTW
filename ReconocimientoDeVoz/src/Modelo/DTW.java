@@ -39,8 +39,8 @@ public class DTW {
             }
 
         }
-
-        return mA[x-1][y-1]/(x+y);
+        return(mA[x-1][y-1])/100;
+        //return mA[x-1][y-1]/(x+y);
     }
     //calcula la distancia que existe entre ambas señales
     private double[][] matrizDistancia(double[] s1,double[] s2){

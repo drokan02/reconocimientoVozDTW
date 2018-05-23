@@ -23,10 +23,10 @@ import javax.sound.sampled.TargetDataLine;
  * @author DroKaN
  */
 public class Grabador{
-    File audio;
+    File audio; //archivo creado
     private AudioFileFormat.Type aFF_T ;//2.Parametros de Grabacion
     private AudioFormat aF ;//3.entrada de informacion por micro
-    private TargetDataLine tD;//4. Crear el archivo (Sobreescribir)
+    private TargetDataLine tD;//4.  (Sobreescribir un archivo)
     
     
     public File getAudio(){
@@ -36,7 +36,7 @@ public class Grabador{
     public  void grabarVoz(String nombre){
         String URL = "rec.wav";
         aFF_T = AudioFileFormat.Type.WAVE;
-        aF = new AudioFormat(8000.0F, 16, 2, true, false);
+        aF = new AudioFormat(8000.0F, 16, 1, true, false);
         if(!nombre.equals(""))
             URL = "src/grabaciones/"+nombre+".wav";
         audio=new File(URL);
@@ -63,7 +63,9 @@ public class Grabador{
        }
     }
      
-    public double[] muestraDeAudio(File audio) throws Exception{
+     //obtiene la muestra de un audio 
+    public double[] muestraDeAudio(File audio){
+        try{
         AudioInputStream ai = AudioSystem.getAudioInputStream(audio);
         byte[] buffer = new byte[ai.available()];
         ai.read(buffer);
@@ -73,7 +75,8 @@ public class Grabador{
             d[i] = ((short) (((buffer[2*i+1] & 0xFF) << 8) + (buffer[2*i] & 0xFF)))/32768.0 ;
         }
         return recortarMuestra(d,.3, 8000);
-        
+        } catch (Exception e){}
+        return new double[0];   
     }
     
    
@@ -91,8 +94,8 @@ public class Grabador{
         }else{
             res = nuevaMuestra(a,min,max);
             
-            return res;
-           // return filtrarMuesta(res, 0.97);
+            //return res;
+            return filtrarMuesta(res, 0.97);
         }
     }
      
@@ -155,10 +158,15 @@ public class Grabador{
         }
         public void run(){
             try {
-                tD.open(aF);
+                tD.open(aF);//abre la entrada de informacion del microfono
                 tD.start();
                 
                AudioSystem.write(new AudioInputStream(tD), aFF_T, audio);
+               /*
+                - obtener un flujo de entrada de audio -> AFF_T
+                - escribir un archivo externo -> tD
+                - convertir una secuencia de entrada de audio a un formato de audio
+               */
             } catch (Exception e) {
             }
         }

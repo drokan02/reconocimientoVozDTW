@@ -6,6 +6,8 @@
 package Controlador;
 
 import Modelo.*;
+import Vista.Grabacion;
+import Vista.Grabacion;
 import Vista.MuestraDeVoz;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -24,33 +26,39 @@ import javax.swing.ImageIcon;
  */
 public class Controller implements ActionListener{
     private  MuestraDeVoz viewRec;
-    private  Grabador grabador;
-    private int pos;
+   // private Grabacion vgrabacion;
     private  Diccionario diccionario;
     private DefaultListModel list;
-    private boolean estado;
+    private  Grabador grabador;
+    private String estado;
     private Palabra muestra;
+    private int pos;
+    
+    
+    
     leerAudio leer;
     public Controller(){
         diccionario = new  Diccionario();
         viewRec = new MuestraDeVoz();
+        //vgrabacion = new Grabacion(viewRec, true);
         grabador = new Grabador();
         list =  new DefaultListModel();
         leer = new leerAudio();
+        muestra = new Palabra();
     }
     
     public void addEvent(){
-        viewRec.btFinalizar.addActionListener(this);
+
         viewRec.btGrabar.addActionListener(this);
         viewRec.btPlay.addActionListener(this);
         viewRec.rbAgregar.addActionListener(this);
         viewRec.rbReconocer.addActionListener(this);
         viewRec.btComparar.addActionListener(this);
+        viewRec.btPrueba.addActionListener(this);
     }  
     
     public void shoWindow(){
-        viewRec.btFinalizar.setVisible(false);
-        viewRec.txtMuestra.setVisible(false);
+        viewRec.txtMuestra.setEditable(false);
         viewRec.setLocationRelativeTo(null);
         viewRec.jList.setModel(list);
         backGround();
@@ -79,53 +87,16 @@ public class Controller implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
        if(e.getSource() == viewRec.btGrabar){
-           String palabra = getWord();
-            if(!palabra.equals("")){
-                 viewRec.txtError.setText("");
-                 viewRec.btGrabar.setVisible(false);
-                 viewRec.btFinalizar.setVisible(true);
-                 grabador.grabarVoz(palabra);
-            }else if(estado){
-                viewRec.txtError.setText("Error no ingreso la muestra");
-                System.out.println(viewRec.txtError.getText());
-
+            if(estado.equals("nueva palabra")){
+                if(!getWord().equals(""))
+                    new HiloGrabar().start();
+                else
+                    viewRec.txtError.setText("INGRESE LA NUEVA PALABRA ");
             }else{
-                 viewRec.txtError.setText("");
-                 viewRec.btGrabar.setVisible(false);
-                 viewRec.btFinalizar.setVisible(true);
-                 grabador.grabarVoz("");
+                    new HiloGrabar().start();
             }
-          
-         
-       } else if (e.getSource() == viewRec.btFinalizar){
-           try {
-               grabador.finalizar();
-               Palabra word = nuevaPalabra(grabador.getAudio());
-               try {
-                   int n = word.getMuestra().length;
-                   if(n > 0){
-                       if(estado){
-                           diccionario.agregarPalabra(word);
-                           list.addElement(getWord());
-                           viewRec.txtError.setText("");
-                           viewRec.txtMuestra.setText("");
-                       }else{
-                           muestra = word;
-                           System.out.println(word.getMuestra().length);
-                           viewRec.txtError.setText("MUESTRA OBTENIDA");
-                           
-                       }
-                   }else
-                       viewRec.txtError.setText("Lo siento no se entendio lo q dijo");
-               } catch (Exception ex) {
-                   System.out.println(ex);
-               }
-               viewRec.btGrabar.setVisible(true);
-               viewRec.btFinalizar.setVisible(false);
-           } catch (Exception ex) {
-                    
-           }
-       } else if (e.getSource() == viewRec.btPlay){
+           
+       }  else if (e.getSource() == viewRec.btPlay){
            if(pos < diccionario.getTamanioD()){
                    grabador.reproducir(diccionario.getPalabra(pos).getAudio());
                    System.out.println(diccionario.getPalabra(pos).getMuestra().length); 
@@ -135,16 +106,24 @@ public class Controller implements ActionListener{
                System.out.println("----------------------------------");  
            }
        }else if(e.getSource() == viewRec.rbAgregar){
-           estado = true;
-           viewRec.txtMuestra.setVisible(true);
+           estado = "nueva palabra";
+           viewRec.txtMuestra.setEditable(true);
 
        }else if(e.getSource() == viewRec.rbReconocer){
-           estado = false;
-           viewRec.txtMuestra.setVisible(false);
+           estado = "nueva muestra";
+           viewRec.txtMuestra.setEditable(false);
        }else if(e.getSource() == viewRec.btComparar){
               compareVoice(muestra); 
               
+       }else if(e.getSource() == viewRec.btPrueba){
+           
+           
+              
+             
+             
        }
+       
+  
     }
     
     private Palabra nuevaPalabra(File audio) throws Exception{
@@ -159,5 +138,71 @@ public class Controller implements ActionListener{
         viewRec.txtError.setText(p.getPalabra());
        
     }
+    
+    //hilo para realizar grabacion
+    public class HiloGrabar extends Thread{
+
+    
+    public void run(){
+            int cont = 0;
+            int start = 3;
+            int tiempG = 4;
+            Palabra nuevaPalabra = new Palabra();
+            nuevaPalabra.setPalabra(getWord());
+            Grabacion g = new Grabacion(); 
+            g.setLocationRelativeTo(null);
+            g.setVisible(true);
+            System.out.println(start);
+            
+            while(start >= 0){
+                g.lbMicrof.setText(start+"");
+                           
+                if (start == 0){
+                    grabador.grabarVoz(nuevaPalabra.getPalabra());
+                } 
+                start--;  
+                Complementos.dormirHilo(1000);
+            }
+            
+            while(tiempG >= 0){
+            
+                if(cont < 4){
+                    g.lbMicrof.setText("");
+                    g.lbTitulo.setText("GRABANDO");
+                    g.lbMicrof.setIcon(Complementos.nuevoIcono("microfono.png"));
+                    g.lbfAnimado.setIcon(Complementos.nuevoIcono("fondo"+cont+".png"));
+                }else {
+                    cont = -1;
+                }
+                if(tiempG == 0){
+                   g.dispose();
+                   grabador.finalizar();
+                   nuevaPalabra.setAudio(grabador.getAudio());
+                   nuevaPalabra.setMuestra(grabador.muestraDeAudio(nuevaPalabra.getAudio()));
+                   int n = nuevaPalabra.getMuestra().length;
+                   if(n > 0){
+                       if(estado.equals("nueva palabra")){
+                           diccionario.agregarPalabra(nuevaPalabra);
+                           list.addElement(nuevaPalabra.getPalabra());
+                           viewRec.txtError.setText("");
+                           viewRec.txtMuestra.setText("");
+                       }else{
+                           muestra = nuevaPalabra;
+                           System.out.println(nuevaPalabra.getMuestra().length);
+                           viewRec.txtError.setText("MUESTRA OBTENIDA");
+                           
+                       }
+                   }else
+                       viewRec.txtError.setText("Lo siento no se entendio lo q dijo");
+                }else{
+                    Complementos.dormirHilo(1000);
+                }
+                cont++;
+                tiempG--;  
+            }  
+    }
+
+}
+       
     
 }

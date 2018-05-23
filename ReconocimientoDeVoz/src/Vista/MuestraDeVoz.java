@@ -38,8 +38,8 @@ public class MuestraDeVoz extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList = new javax.swing.JList<>();
-        btFinalizar = new javax.swing.JButton();
         btComparar = new javax.swing.JButton();
+        btPrueba = new javax.swing.JButton();
         btPlay = new javax.swing.JButton();
         txtError = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -49,7 +49,7 @@ public class MuestraDeVoz extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(txtMuestra, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 172, -1));
+        getContentPane().add(txtMuestra, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 200, -1));
 
         btGrabar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/microfono-icono-9040-64.png"))); // NOI18N
         btGrabar.setBorder(null);
@@ -65,8 +65,8 @@ public class MuestraDeVoz extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Muestra");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
+        jLabel1.setText("Nueva palabra: ");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         jList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = new String[20];
@@ -77,20 +77,11 @@ public class MuestraDeVoz extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 241, 180));
 
-        btFinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reproductor-de-pausa-icono-3852-32.png"))); // NOI18N
-        btFinalizar.setBorder(null);
-        btFinalizar.setBorderPainted(false);
-        btFinalizar.setContentAreaFilled(false);
-        btFinalizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btFinalizar.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        btFinalizar.setIconTextGap(-3);
-        btFinalizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reproductor-de-pausa-icono-3852-48.png"))); // NOI18N
-        btFinalizar.setSelected(true);
-        btFinalizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        getContentPane().add(btFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 50, 50));
-
         btComparar.setText("Comparar");
         getContentPane().add(btComparar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, -1, -1));
+
+        btPrueba.setText("jButton1");
+        getContentPane().add(btPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, -1, -1));
 
         btPlay.setText("Play");
         getContentPane().add(btPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, -1, -1));
@@ -160,9 +151,9 @@ public class MuestraDeVoz extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btComparar;
-    public javax.swing.JButton btFinalizar;
     public javax.swing.JButton btGrabar;
     public javax.swing.JButton btPlay;
+    public javax.swing.JButton btPrueba;
     public javax.swing.JLabel gackgron;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JList<String> jList;

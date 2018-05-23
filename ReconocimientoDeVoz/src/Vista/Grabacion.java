@@ -5,18 +5,24 @@
  */
 package Vista;
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author DroKaN
  */
-public class Grabacion extends javax.swing.JDialog {
+public class Grabacion extends javax.swing.JFrame {
 
     /**
-     * Creates new form Grabacion
+     * Creates new form Grabacion1
      */
-    public Grabacion(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Grabacion() {
         initComponents();
+             ImageIcon img = new ImageIcon("src/Imagenes/fondoD.jpg");
+            Icon icon = new ImageIcon(img.getImage().getScaledInstance(lbFondo.getWidth(), lbFondo.getHeight(), Image.SCALE_DEFAULT));
+            lbFondo.setIcon(icon);
     }
 
     /**
@@ -28,18 +34,29 @@ public class Grabacion extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        lbTitulo = new javax.swing.JLabel();
+        lbMicrof = new javax.swing.JLabel();
+        lbfAnimado = new javax.swing.JLabel();
+        lbFondo = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lbTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(lbTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 140, 50));
+
+        lbMicrof.setFont(new java.awt.Font("Tahoma", 1, 80)); // NOI18N
+        lbMicrof.setForeground(new java.awt.Color(255, 255, 255));
+        lbMicrof.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbMicrof.setText("m");
+        lbMicrof.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lbMicrof, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 340));
+
+        lbfAnimado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbfAnimado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lbfAnimado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 330));
+        getContentPane().add(lbFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -70,22 +87,20 @@ public class Grabacion extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(Grabacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the dialog */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Grabacion dialog = new Grabacion(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new Grabacion().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel lbFondo;
+    public javax.swing.JLabel lbMicrof;
+    public javax.swing.JLabel lbTitulo;
+    public javax.swing.JLabel lbfAnimado;
     // End of variables declaration//GEN-END:variables
 }

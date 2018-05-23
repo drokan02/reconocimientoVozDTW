@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +23,7 @@ import java.util.logging.Logger;
 public class Diccionario {
     ArrayList<Palabra> palabras;
     BufferedReader lecturaDiccionario;
-    BufferedWriter escrituraDiccionario;
+    PrintWriter escrituraDiccionario;
     File diccionario;
     public Diccionario(){
         palabras = new ArrayList<>();
@@ -33,7 +34,7 @@ public class Diccionario {
     private void crearLecturaEscritura(){
         try {
             lecturaDiccionario = new BufferedReader(new FileReader(diccionario));
-            escrituraDiccionario = new BufferedWriter(new FileWriter(diccionario,true));
+            escrituraDiccionario = new PrintWriter(new BufferedWriter(new FileWriter(diccionario,true)));
         } catch (IOException ex) {
             Logger.getLogger(Diccionario.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,10 +57,9 @@ public class Diccionario {
     }
     public void agregarPalabra(Palabra p){
         try {
-            escrituraDiccionario.newLine();
-            escrituraDiccionario.write(p.getPalabra());
+            escrituraDiccionario.write(p.getPalabra()+"\n");
             palabras.add(p);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(Diccionario.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -83,7 +83,7 @@ public class Diccionario {
         DTW dtw = new DTW();
         for(Palabra p: palabras){
             aux = dtw.matrizAcumulada(p.getMuestra(),palabra.getMuestra());
-            System.out.println(aux+"  "+ p.getPalabra());
+            System.out.println(aux+"  "+ p.getPalabra()+p.getMuestra().length+"  "+palabra.getMuestra().length);
             if(menor(men,aux) == aux){
                 men = aux;
                 res = p;
