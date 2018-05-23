@@ -63,7 +63,8 @@ public class Grabador{
        }
     }
      
-    public double[] muestraDeAudio(File audio) throws Exception{
+    public double[] muestraDeAudio(File audio){
+        try{
         AudioInputStream ai = AudioSystem.getAudioInputStream(audio);
         byte[] buffer = new byte[ai.available()];
         ai.read(buffer);
@@ -73,7 +74,8 @@ public class Grabador{
             d[i] = ((short) (((buffer[2*i+1] & 0xFF) << 8) + (buffer[2*i] & 0xFF)))/32768.0 ;
         }
         return recortarMuestra(d,.3, 8000);
-        
+        } catch (Exception e){}
+        return new double[0];   
     }
     
    

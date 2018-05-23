@@ -14,10 +14,12 @@ import Vista.Grabacion;
 public class HiloGrabar extends Thread{
     private final Grabacion vgrabacion;
     private final Palabra nuevaP;
+    private final Grabador grabador;
     
     public HiloGrabar(Grabacion vgrabacion,Palabra nuevaP){
         this.vgrabacion = vgrabacion;
         this.nuevaP = nuevaP;
+        this.grabador = new Grabador();
     }
     
     public void run(){
@@ -30,7 +32,7 @@ public class HiloGrabar extends Thread{
                 vgrabacion.lbMicrof.setText(start+1+"");
                            
                 if (start == 0){
-                    //empezar agrabar
+                    grabador.grabarVoz(nuevaP.getPalabra());
                     vgrabacion.lbMicrof.setText("");
                     vgrabacion.lbMicrof.setIcon(Complementos.nuevoIcono("microfono.png"));
                 } else {
@@ -47,8 +49,9 @@ public class HiloGrabar extends Thread{
                     cont = -1;
                 }
                 if(tiempG == 1){
-                    //cerrar la ventada de grabacion
-                    //parar grabacion
+                   vgrabacion.dispose();
+                   nuevaP.setAudio(grabador.getAudio());
+                   nuevaP.setMuestra(grabador.muestraDeAudio(nuevaP.getAudio()));
                 }else{
                     Complementos.dormirHilo(1000);
                 }
