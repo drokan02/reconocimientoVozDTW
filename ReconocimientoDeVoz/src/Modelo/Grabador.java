@@ -23,10 +23,10 @@ import javax.sound.sampled.TargetDataLine;
  * @author DroKaN
  */
 public class Grabador{
-    File audio;
+    File audio; //archivo creado
     private AudioFileFormat.Type aFF_T ;//2.Parametros de Grabacion
     private AudioFormat aF ;//3.entrada de informacion por micro
-    private TargetDataLine tD;//4. Crear el archivo (Sobreescribir)
+    private TargetDataLine tD;//4.  (Sobreescribir un archivo)
     
     
     public File getAudio(){
@@ -63,6 +63,7 @@ public class Grabador{
        }
     }
      
+     //obtiene la muestra de un audio 
     public double[] muestraDeAudio(File audio){
         try{
         AudioInputStream ai = AudioSystem.getAudioInputStream(audio);
@@ -157,10 +158,15 @@ public class Grabador{
         }
         public void run(){
             try {
-                tD.open(aF);
+                tD.open(aF);//abre la entrada de informacion del microfono
                 tD.start();
                 
                AudioSystem.write(new AudioInputStream(tD), aFF_T, audio);
+               /*
+                - obtener un flujo de entrada de audio -> AFF_T
+                - escribir un archivo externo -> tD
+                - convertir una secuencia de entrada de audio a un formato de audio
+               */
             } catch (Exception e) {
             }
         }

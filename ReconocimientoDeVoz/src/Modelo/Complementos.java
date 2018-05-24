@@ -5,7 +5,7 @@
  */
 package Modelo;
 
-import Vista.NewJFrame;
+import Vista.Main;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -28,7 +28,7 @@ public class Complementos {
            try {
                 Thread.sleep(tiempo);
               } catch (InterruptedException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
               }
     }
 }

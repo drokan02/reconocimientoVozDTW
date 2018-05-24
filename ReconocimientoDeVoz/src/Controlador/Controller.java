@@ -54,7 +54,6 @@ public class Controller implements ActionListener{
         viewRec.rbAgregar.addActionListener(this);
         viewRec.rbReconocer.addActionListener(this);
         viewRec.btComparar.addActionListener(this);
-        viewRec.btPrueba.addActionListener(this);
     }  
     
     public void shoWindow(){
@@ -115,14 +114,7 @@ public class Controller implements ActionListener{
        }else if(e.getSource() == viewRec.btComparar){
               compareVoice(muestra); 
               
-       }else if(e.getSource() == viewRec.btPrueba){
-           
-           
-              
-             
-             
        }
-       
   
     }
     

@@ -14,12 +14,8 @@ public class DTW {
 
     public double matrizAcumulada(double[] s1,double[] s2){
         int x,y;
-        int step = 40;
-        int wdw = 80;
         double res;
         double[][] mA = matrizDistancia(s1, s2);
-        //x=Math.abs((s1.length-wdw)/step);
-       //y=Math.abs((s2.length-wdw)/step);
          x = s1.length; 
          y = s2.length;
         if(mA[0].length > 0){
