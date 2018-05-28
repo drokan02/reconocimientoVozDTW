@@ -39,7 +39,6 @@ public class MuestraDeVoz extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList = new javax.swing.JList<>();
         btComparar = new javax.swing.JButton();
-        btPrueba = new javax.swing.JButton();
         btPlay = new javax.swing.JButton();
         txtError = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -79,9 +78,6 @@ public class MuestraDeVoz extends javax.swing.JFrame {
 
         btComparar.setText("Comparar");
         getContentPane().add(btComparar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, -1, -1));
-
-        btPrueba.setText("jButton1");
-        getContentPane().add(btPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, -1, -1));
 
         btPlay.setText("Play");
         getContentPane().add(btPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, -1, -1));
@@ -153,7 +149,6 @@ public class MuestraDeVoz extends javax.swing.JFrame {
     public javax.swing.JButton btComparar;
     public javax.swing.JButton btGrabar;
     public javax.swing.JButton btPlay;
-    public javax.swing.JButton btPrueba;
     public javax.swing.JLabel gackgron;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JList<String> jList;
